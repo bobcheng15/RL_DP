@@ -35,3 +35,36 @@ class Value:
         self.value = np.copy(new_value)
         for i, j in terminal:
             self.value[i][j] = 0.0
+    def update_vi(self, terminal, reward):
+        new_value = np.arange(self.size_col * self.size_row, dtype = 'f').reshape(self.size_col, self.size_row)
+        max = np.NINF
+        for i in range(0, size_row):
+            for j in range(0, size_col):
+                if (i != 0):
+                    if (self.value[i - 1][j] + reward > max):
+                        max = self.value[i - 1][j] + reward
+                else:
+                    if (self.value[i][j] + reward > max):
+                        max = self.value[i][j] + reward
+                if (i != self.size_row - 1):
+                    if (self.value[i + 1][j] + reward > max):
+                        max = self.value[i + 1][j] + reward
+                else:
+                    if (self.value[i][j] + reward > max):
+                        max = self.value[i][j] + reward
+                if (j != 0):
+                    if (self.value[i][j - 1] + reward > max):
+                        max = self.value[i][j - 1] + reward
+                else:
+                    if (self.value[i][j] + reward > max):
+                        max = self.value[i][j] + reward
+                if (j != self.size_col - 1):
+                    if (self.value[i][j + 1] + reward):
+                        max = self.value[i][j + 1] + reward
+                else:
+                    if (self.value[i][j] + reward):
+                        max = self.value[i][j] + reward
+                new_value[i][j] = Max
+        self.value = np.copy(new_value)
+        for i, j in terminal:
+            self.value[i][j] = 0.0
