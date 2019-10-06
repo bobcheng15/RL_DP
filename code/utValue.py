@@ -35,5 +35,22 @@ class testValue(unittest.TestCase):
         self.assertAlmostEqual(val.value[2][1], -1.75)
         self.assertAlmostEqual(val.value[2][2], 0)
 
+    def testValueUpdate_vi(self):
+        input_matrix = [[0., -1., -1.], [-1., -1., -1.], [-1., -1., 0.]]
+        terminal = [(0, 0), (2, 2)]
+        val = Value.Value(3, 3, input_matrix)
+
+        val.update_vi(terminal, -1)
+
+        self.assertAlmostEqual(val.value[0][0], 0)
+        self.assertAlmostEqual(val.value[0][1], -1)
+        self.assertAlmostEqual(val.value[0][2], -2)
+        self.assertAlmostEqual(val.value[1][0], -1)
+        self.assertAlmostEqual(val.value[1][1], -2)
+        self.assertAlmostEqual(val.value[1][2], -1)
+        self.assertAlmostEqual(val.value[2][0], -2)
+        self.assertAlmostEqual(val.value[2][1], -1)
+        self.assertAlmostEqual(val.value[2][2], 0)
+
 if __name__ == "__main__":
     unittest.main()
