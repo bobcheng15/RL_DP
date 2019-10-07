@@ -37,6 +37,7 @@ class Value:
             self.value[i][j] = 0.0
     def update_vi(self, terminal, reward):
         new_value = np.arange(self.size_col * self.size_row, dtype = 'f').reshape(self.size_col, self.size_row)
+        equal = True
         for i in range(0, self.size_row):
             for j in range(0, self.size_col):
                 max = np.NINF
@@ -65,6 +66,13 @@ class Value:
                     if (self.value[i][j] + reward > max):
                         max = self.value[i][j] + reward
                 new_value[i][j] = max
-        self.value = np.copy(new_value)
+                for k, h in terminal:
+                    new_value[k][h] = 0.0
+                if (round(new_value[i][j], 3) != round(self.value[i][j], 3)):
+                    equal = False
+
+
         for i, j in terminal:
-            self.value[i][j] = 0.0
+            new_value[i][j] = 0.0
+        self.value = np.copy(new_value)
+        return equal

@@ -13,9 +13,9 @@ if __name__ == "__main__":
     terminal = list(zip(it, it))
     dp =DP.DP(size_row, size_col, map, terminal, -1)
     if (sys.argv[2] == "pi"):
-        for i in range(0, 30):
-            dp.policyIteration()
+        count = dp.policyIteration()
 
     else:
-        dp.valueIteration(30)
+        count = dp.valueIteration(30)
+        print("Stop after " + str(count) + " iteration of value iteration")
     dp.plot(sys.argv[1], sys.argv[2])

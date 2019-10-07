@@ -12,12 +12,22 @@ class DP:
         self.size_col = size_col
         self.size_row = size_row
     def policyIteration(self):
-        self.val.update(self.pol, self.reward, self.terminal)
-        self.pol.greedy(self.val, self.terminal)
+        converge = False
+        count = 0
+        while converge == False:
+            self.val.update(self.pol, self.reward, self.terminal)
+            converge = self.pol.greedy(self.val, self.terminal)
+            count = count + 1
+            print(count)
+        return count
     def valueIteration(self, times):
-        for i in range(0, times):
-            self.val.update_vi(self.terminal, self.reward)
+        converge = False
+        count = 0
+        while converge == False:
+            converge = self.val.update_vi(self.terminal, self.reward)
+            count = count + 1
         self.pol.greedy(self.val, self.terminal)
+        return count
 
     def plot(self, argv1, argv2):
         # settings

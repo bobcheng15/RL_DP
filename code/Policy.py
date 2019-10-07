@@ -17,6 +17,7 @@ class policy:
             for k in range(0, 4):
                 self.policy[i][j][k] = 0;
     def greedy(self, input_value, terimal):
+        new_pol = np.arange(4 * self.size_col * self.size_row, dtype = 'f').reshape(self.size_col, self.size_row, 4)
         for i in range(0, self.size_row):
             for j in range(0, self.size_col):
                 Return = [0., 0., 0., 0.]
@@ -41,11 +42,16 @@ class policy:
                 for k in range(0, 4):
                     if (Return[k] == Max):
                         count = count + 1.0
-                        self.policy[i][j][k] = 1.0
+                        new_pol[i][j][k] = 1.0
                     else:
-                        self.policy[i][j][k] = 0.0
+                        new_pol[i][j][k] = 0.0
                 for k in range(0, 4):
                     self.policy[i][j][k] /= count
         for i, j in terimal:
             for k in range(0, 4):
-                self.policy[i][j][k] = 0;
+                new_pol[i][j][k] = 0;
+        if (np.array_equal(new_pol, self.policy)):
+            return True
+        else:
+            self.policy = np.copy(new_pol)
+            return False
