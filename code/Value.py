@@ -12,6 +12,7 @@ class Value:
         self.value = np.copy(input_matrix)
     def update(self, input_policy, reward, terminal):
         new_value = np.arange(self.size_col * self.size_row, dtype = 'f').reshape(self.size_col, self.size_row)
+        equal = True
         for i in range(0, self.size_row):
             for j in range(0, self.size_col):
                 sum = 0.0
@@ -32,9 +33,13 @@ class Value:
                 else:
                     sum += input_policy.policy[i][j][RT] * (self.value[i][j] + reward)
                 new_value[i][j] = sum
+                if (round(new_value[i][j], 3) != round(self.value[i][j], 3)):
+                    equal = False
         self.value = np.copy(new_value)
         for i, j in terminal:
             self.value[i][j] = 0.0
+        return equal
+
     def update_vi(self, terminal, reward):
         new_value = np.arange(self.size_col * self.size_row, dtype = 'f').reshape(self.size_col, self.size_row)
         equal = True

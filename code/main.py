@@ -14,8 +14,9 @@ if __name__ == "__main__":
     dp =DP.DP(size_row, size_col, map, terminal, -1)
     if (sys.argv[2] == "pi"):
         count = dp.policyIteration()
+        print("Stop after " + str(count) + " iteration of policy iteration")
 
     else:
-        count = dp.valueIteration(30)
+        count = dp.valueIteration()
         print("Stop after " + str(count) + " iteration of value iteration")
     dp.plot(sys.argv[1], sys.argv[2])

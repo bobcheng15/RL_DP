@@ -15,12 +15,12 @@ class DP:
         converge = False
         count = 0
         while converge == False:
-            self.val.update(self.pol, self.reward, self.terminal)
-            converge = self.pol.greedy(self.val, self.terminal)
+            converge = self.val.update(self.pol, self.reward, self.terminal)
+            self.pol.greedy(self.val, self.terminal)
             count = count + 1
             print(count)
         return count
-    def valueIteration(self, times):
+    def valueIteration(self):
         converge = False
         count = 0
         while converge == False:

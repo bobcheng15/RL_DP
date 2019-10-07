@@ -46,12 +46,8 @@ class policy:
                     else:
                         new_pol[i][j][k] = 0.0
                 for k in range(0, 4):
-                    self.policy[i][j][k] /= count
+                    new_pol[i][j][k] /= count
         for i, j in terimal:
             for k in range(0, 4):
                 new_pol[i][j][k] = 0;
-        if (np.array_equal(new_pol, self.policy)):
-            return True
-        else:
-            self.policy = np.copy(new_pol)
-            return False
+        self.policy = np.copy(new_pol)
