@@ -27,26 +27,26 @@ I used the unittest library in python to test the correctness of each function. 
 
 #### case1
 * takes 5 steps of policy iteration to converge
-* takes 3 steps of policy iteration to converge
+* takes 3 steps of value iteration to converge
 ![](https://i.imgur.com/vpqABhv.png)
 
 
 #### case2
 
 * takes 8 steps of policy iteration to converge
-* takes 6 steps of policy iteration to converge
+* takes 6 steps of value iteration to converge
 ![](https://i.imgur.com/RAMMxHW.png)
 
 #### case3
 
 * takes 8 steps of policy iteration to converge
-* takes 6 steps of policy iteration to converge
+* takes 6 steps of value iteration to converge
 ![](https://i.imgur.com/P7pANu0.png)
 
 #### case4
 
 * takes 6 steps of policy iteration to converge
-* takes 4 steps of policy iteration to converge
+* takes 4 steps of value iteration to converge
 
 ![](https://i.imgur.com/PPK3oCY.png)
 
