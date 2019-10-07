@@ -18,7 +18,7 @@ class DP:
             converge = self.val.update(self.pol, self.reward, self.terminal)
             self.pol.greedy(self.val, self.terminal)
             count = count + 1
-            print(count)
+            #print(count)
         return count
     def valueIteration(self):
         converge = False
